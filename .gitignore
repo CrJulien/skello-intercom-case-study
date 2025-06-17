@@ -2,4 +2,5 @@ target/
 dbt_packages/
 .venv/
 __pycache__/
-profiles.yml
+intercom_case/profiles.yml
+.env

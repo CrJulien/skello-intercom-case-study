@@ -8,4 +8,9 @@ with tags_list AS (
     FROM   intercom.dev.dim_conversations c ,
      lateral flatten(input => c.conversation_tags_array) f
 )
-select tag_name, count(distinct conversation_id), avg(conversation_rating) as avg_rating from tags_list group by 1 order by 2 desc
+select tag_name,
+       count(distinct conversation_id) as cnt_conv,
+       avg(conversation_rating) as avg_rating
+from tags_list
+group by 1
+order by 2 desc

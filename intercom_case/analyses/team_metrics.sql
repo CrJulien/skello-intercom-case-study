@@ -72,7 +72,7 @@ response_time AS (
     GROUP BY support_team_member_id, week_start
 ),
 
-/* ─────────────── 5. Conversation-level quality metrics (CSAT, tags…) ─────── */
+/* ─────────────── 5. Conversation-level quality metrics  ─────── */
 conv_table_metrics AS (
     SELECT
         dstm.support_team_member_name,
