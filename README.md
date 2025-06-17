@@ -75,21 +75,22 @@ Ci-dessous les principaux enseignements tirés des explorations hors reporting :
 
 ### Volume de conversations — agrégation temporelle
 Histogrammes du nombre de conversations créées **par heure** et **par jour** : utiles pour calibrer les shifts de l’équipe support.  
-![img.png](img.png)
+![img.png](docs%2Fassets%2Fimg.png)
 
 ### Volume par sujet produit (tag)
 Nombre de conversations par **tag**. La Badgeuse ressort très nettement comme source principale de tickets.  
-![img_1.png](img_1.png)
+![img_1.png](docs%2Fassets%2Fimg_1.png)
 
 
 Quand on se focalise sur les clients les plus récurrents, la Badgeuse reste le sujet prédominant :  
-![img_2.png](img_2.png)
+![img_2.png](docs%2Fassets%2Fimg_2.png)
 
 
 ### Nombre de contact support par utilisateur
 
 Certains clients reviennent fréquemment. La distribution ci-dessous illustre cette récurrence :  
-![img_3.png](img_3.png)
+![img_3.png](docs%2Fassets%2Fimg_3.png)
+
 **Statistiques descriptives associées**
 
 | Quartile / métrique | Valeur |
