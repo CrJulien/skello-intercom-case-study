@@ -1,0 +1,24 @@
+    WITH cols AS (
+        SELECT column_name
+        FROM intercom.information_schema.columns
+        WHERE table_schema = 'STG'
+          AND table_name   = 'STG_CONVERSATIONS'
+        ORDER BY ordinal_position
+    )
+    SELECT LISTAGG(
+             'SELECT '''||column_name||''' AS column_name, '||
+             'COUNT(DISTINCT "'||column_name||'") AS distinct_cnt '||
+             'FROM "INTERCOM"."STG"."STG_CONVERSATIONS"',
+             ' UNION ALL '
+           )
+    FROM cols;
+
+--The results of the previous query helps us create the following query.
+--The goal of the following query is to gather the columns that have 1 or less category values.
+--As they add no information, these columns will not be added to the dim_conversations view.
+
+
+SELECT * FROM (
+SELECT 'PRIORITY' AS column_name, COUNT(DISTINCT "PRIORITY") AS distinct_cnt FROM "INTERCOM"."STG"."STG_CONVERSATIONS" UNION ALL SELECT 'READ' AS column_name, COUNT(DISTINCT "READ") AS distinct_cnt FROM "INTERCOM"."STG"."STG_CONVERSATIONS" UNION ALL SELECT 'STATE' AS column_name, COUNT(DISTINCT "STATE") AS distinct_cnt FROM "INTERCOM"."STG"."STG_CONVERSATIONS" UNION ALL SELECT 'OPEN' AS column_name, COUNT(DISTINCT "OPEN") AS distinct_cnt FROM "INTERCOM"."STG"."STG_CONVERSATIONS" UNION ALL SELECT 'ASSIGNEE' AS column_name, COUNT(DISTINCT "ASSIGNEE") AS distinct_cnt FROM "INTERCOM"."STG"."STG_CONVERSATIONS" UNION ALL SELECT 'SNOOZED_UNTIL' AS column_name, COUNT(DISTINCT "SNOOZED_UNTIL") AS distinct_cnt FROM "INTERCOM"."STG"."STG_CONVERSATIONS" UNION ALL SELECT 'RN' AS column_name, COUNT(DISTINCT "RN") AS distinct_cnt FROM "INTERCOM"."STG"."STG_CONVERSATIONS" UNION ALL SELECT 'TAGS' AS column_name, COUNT(DISTINCT "TAGS") AS distinct_cnt FROM "INTERCOM"."STG"."STG_CONVERSATIONS" UNION ALL SELECT 'TYPE' AS column_name, COUNT(DISTINCT "TYPE") AS distinct_cnt FROM "INTERCOM"."STG"."STG_CONVERSATIONS" UNION ALL SELECT 'UPDATED_AT' AS column_name, COUNT(DISTINCT "UPDATED_AT") AS distinct_cnt FROM "INTERCOM"."STG"."STG_CONVERSATIONS" UNION ALL SELECT '_SDC_TABLE_VERSION' AS column_name, COUNT(DISTINCT "_SDC_TABLE_VERSION") AS distinct_cnt FROM "INTERCOM"."STG"."STG_CONVERSATIONS" UNION ALL SELECT 'CONVERSATION_RATING' AS column_name, COUNT(DISTINCT "CONVERSATION_RATING") AS distinct_cnt FROM "INTERCOM"."STG"."STG_CONVERSATIONS" UNION ALL SELECT 'CREATED_AT' AS column_name, COUNT(DISTINCT "CREATED_AT") AS distinct_cnt FROM "INTERCOM"."STG"."STG_CONVERSATIONS" UNION ALL SELECT 'ID' AS column_name, COUNT(DISTINCT "ID") AS distinct_cnt FROM "INTERCOM"."STG"."STG_CONVERSATIONS" UNION ALL SELECT '_SDC_BATCHED_AT' AS column_name, COUNT(DISTINCT "_SDC_BATCHED_AT") AS distinct_cnt FROM "INTERCOM"."STG"."STG_CONVERSATIONS" UNION ALL SELECT '_SDC_EXTRACTED_AT' AS column_name, COUNT(DISTINCT "_SDC_EXTRACTED_AT") AS distinct_cnt FROM "INTERCOM"."STG"."STG_CONVERSATIONS" UNION ALL SELECT '_SDC_RECEIVED_AT' AS column_name, COUNT(DISTINCT "_SDC_RECEIVED_AT") AS distinct_cnt FROM "INTERCOM"."STG"."STG_CONVERSATIONS" UNION ALL SELECT '_SDC_SEQUENCE' AS column_name, COUNT(DISTINCT "_SDC_SEQUENCE") AS distinct_cnt FROM "INTERCOM"."STG"."STG_CONVERSATIONS" UNION ALL SELECT 'WAITING_SINCE' AS column_name, COUNT(DISTINCT "WAITING_SINCE") AS distinct_cnt FROM "INTERCOM"."STG"."STG_CONVERSATIONS"
+)
+order by 2

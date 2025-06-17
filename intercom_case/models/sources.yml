@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: intercom
+    schema: raw
+    tables:
+      - name: conversations
+        identifier: conversations
+
+      - name: conversation_parts
+        identifier: conversation_parts
+
+      - name: support_team
+        identifier: support_team
